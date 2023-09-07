@@ -1,9 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
-dotenv.config()
-import  jwt from "jsonwebtoken";
-
-dotenv.config();
 import {
   createTokens,
   createUser,
@@ -20,7 +15,6 @@ import {
   iUserUpdate,
 } from "../../types/userTypes";
 import { ObjectId } from "mongoose";
-import { isGuestAvailable } from "../appointments/functions";
 
 export const registerUser = async (
   req: Request,
@@ -41,10 +35,9 @@ export const registerUser = async (
         meetings: {},
       };
       const userDetail = await createUser(userDetails);
-      const accessToken = createTokens(userDetail)
+      const accessToken = createTokens(userDetail);
 
       return res.status(200).json({ userDetail, ...accessToken });
-
     }
   } catch (err) {
     res.status(500).json({ message: "Something went wrong", error: err });
@@ -59,7 +52,6 @@ export const userLogin = async (
   try {
     const body = req.body;
     const userResult = await valiateUserExist(body.email);
-    const {refreshSecret, refreshValidity} = process.env
     if (userResult) {
       const isValidCred = await matchEncryptedString(
         body.password,
@@ -69,7 +61,7 @@ export const userLogin = async (
         const userDetail = { ...userResult };
         delete userDetail.password;
 
-        const accessToken = createTokens(userDetail)
+        const accessToken = createTokens(userDetail);
 
         return res.status(200).json({ userDetail, ...accessToken });
       }
@@ -151,8 +143,6 @@ export const updateUserDetails = async (
     }
     if (body?.meetings) {
       dataToUpdate.meetings = body.meetings;
-
-
     }
 
     const id: ObjectId | string = body.id;

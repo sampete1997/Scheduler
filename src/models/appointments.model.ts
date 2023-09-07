@@ -7,7 +7,7 @@ const appointmentSchema = new mongoose.Schema({
   hostName: String,
   createdBy: String, 
   date: String,
-  time: String,
+  eventTime: Object,
   timezone: String,
 });
 

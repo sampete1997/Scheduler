@@ -6,8 +6,9 @@ import isLoggedIn from "../../middleware/authorization/isLoggedIn";
 
 const router: Router = Router();
 router.use(isLoggedIn);
-router.post('/createEvent',validators.createMeeting,errorValidator,controllers.createAppointment)
-router.post('/availability',validators.guestAvailability,errorValidator,controllers.checkGuestAvailability)
+router.post('/createEvent',validators.createMeeting,errorValidator,controllers.createAppointment);
+router.post('/availability',validators.guestAvailability,errorValidator,controllers.checkGuestAvailability);
+router.get('/events',validators.getEvents,errorValidator,controllers.getEvents)
 
 
 

@@ -2,10 +2,10 @@ import { body, query, param } from "express-validator";
 
 const timeFormat = (value: string) => {
   const timeFormatPattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
-  if(timeFormatPattern.test(value)){
-    return true
+  if (timeFormatPattern.test(value)) {
+    return true;
   }
-  throw new Error("invalid time received")
+  throw new Error("invalid time received");
 };
 
 export const createMeeting = [
@@ -60,4 +60,38 @@ export const guestAvailability = [
     .notEmpty()
     .withMessage("eventDate is mandatory")
     .toLowerCase(),
+];
+
+export const getEvents = [
+  query("id")
+    .notEmpty()
+    .withMessage("id is mandatory")
+    .toLowerCase()
+    .isString()
+    .withMessage("Must string")
+    .isLength({ min: 24, max: 24 })
+    .withMessage("id should be valid of 24 characters")
+    .optional(),
+  query("start")
+    .isLength({ min: 5, max: 5 })
+    .withMessage("invalid startTime received")
+    .custom(timeFormat)
+    .toLowerCase()
+    .optional(),
+  query("end")
+    .isLength({ min: 5, max: 5 })
+    .withMessage("invalid endTime received")
+    .custom(timeFormat)
+    .toLowerCase()
+    .optional(),
+  query("createdBy")
+    .isEmail()
+    .withMessage("invalid email as createdBy")
+    .toLowerCase()
+    .optional(),
+  query("date")
+    .isString()
+    .withMessage("invalid date received")
+    .toLowerCase()
+    .optional(),
 ];

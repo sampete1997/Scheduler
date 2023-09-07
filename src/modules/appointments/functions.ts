@@ -1,6 +1,6 @@
 import { dbCollections } from "../../models";
 import { ObjectId } from "mongoose";
-import { iEvent } from "../../types/appointmentTypes";
+import { iEvent, iEventFilter } from "../../types/appointmentTypes";
 import { iTimeRange } from "../../types/userTypes";
 
 export const createEvent = async (eventData: iEvent) => {
@@ -43,29 +43,14 @@ export const isGuestAvailable = (
   return true;
 };
 
-//       const result = await dbCollections.User.findOne({ _id: id }, "-password");
-//       console.log("user by Id", result);
-//       return result?.toObject() || null;
-//     } catch (err) {
-//       console.error("error:", err);
-//       throw err;
-//     }
-//   };
 
-//   export const updateUserById = async (
-//     id: ObjectId | string,
-//     dataToUpdate: iUserUpdate | iPassword
-//   ) => {
-//     try {
-//       const result = await dbCollections.User.findByIdAndUpdate(
-//         id,
-//         dataToUpdate,
-//         { new: true }
-//       );
-
-//       return result?.toObject();
-//     } catch (err) {
-//       console.error("error:", err);
-//       throw err;
-//     }
-//   };
+export const findAllEvents = async (filter: any) => {
+  try {
+    const result = await dbCollections.Appointments.find(filter);
+    console.log("All events", result);
+    return result;
+  } catch (err) {
+    console.error("error:", err);
+    throw err;
+  }
+};
