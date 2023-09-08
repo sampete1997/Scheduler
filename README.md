@@ -1,6 +1,22 @@
 # Scheduler
 A scheduler is a nodeJS backend app to schedule an event with present users in the app.
 
+
+**before**
+as I have used mongodb. you need to run mongodb server in local or atlas cluster url you can use in .env file please add env variables.
+
+sample .env
+
+```
+PORT=3001
+MONGO_DB_URI=yourURL
+
+accessSecret=youranykey
+refreshSecret=youranykey
+accessValidity=1d  // add as you wish
+refreshValidity=1d //add as you wish
+```
+
 # Locally run the server/app 
 assign PORT, MONGO_DB_URI (you can add atlas mongodb cluster url), accessSecret,refreshSecret, accessValidity,refreshValidity in **.env** file.
 you can add any keys and validity
