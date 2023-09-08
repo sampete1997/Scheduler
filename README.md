@@ -29,6 +29,18 @@ npm start
 **OR**
 
 # Create dockerfile to run this app
+
+**Optional** =>  Before dockerize, if you have run this server/app in the local host
+please add this files in **dockerignore** file
+```
+.env
+.gitignore
+node_modules/
+build
+dist
+```
+Now yo can build and run below steps
+
 ```
 FROM node:16
 WORKDIR /app
