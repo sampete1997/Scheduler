@@ -30,7 +30,7 @@ export const createMeeting = [
       }
       throw new Error("time field must have a length  2");
     }),
-  body("timeZone").optional().toLowerCase(),
+  body("timeZone").optional(),
 ];
 
 export const guestAvailability = [
@@ -47,19 +47,16 @@ export const guestAvailability = [
     .withMessage("startTime is mandatory")
     .isLength({ min: 5, max: 5 })
     .withMessage("invalid startTime received")
-    .custom(timeFormat)
-    .toLowerCase(),
+    .custom(timeFormat),
   body("endTime")
     .notEmpty()
     .withMessage("endTime is mandatory")
     .isLength({ min: 5, max: 5 })
     .withMessage("invalid endTime received")
-    .custom(timeFormat)
-    .toLowerCase(),
+    .custom(timeFormat),
   body("eventDate")
     .notEmpty()
     .withMessage("eventDate is mandatory")
-    .toLowerCase(),
 ];
 
 export const getEvents = [

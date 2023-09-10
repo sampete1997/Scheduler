@@ -62,6 +62,17 @@ export const userById = [
     .withMessage("Id should be valid of 24 characters"),
 ];
 
+export const userByIdQuery = [
+  query("id")
+    .notEmpty()
+    .withMessage("id is mandatory")
+    .toLowerCase()
+    .isString()
+    .withMessage("Must string")
+    .isLength({ min: 24, max: 24 })
+    .withMessage("Id should be valid of 24 characters"),
+];
+
 export const updateUser = [
   body("id")
     .notEmpty()

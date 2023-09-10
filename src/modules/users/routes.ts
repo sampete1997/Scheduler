@@ -3,6 +3,7 @@ import * as validators from "./validators";
 import * as controllers from "./controllers";
 import errorValidator from "../../middleware/ErrorValidator";
 import isLoggedIn from "../../middleware/authorization/isLoggedIn";
+import { findAllUpcomingEvent } from "./functions";
 
 const router: Router = Router();
 
@@ -27,5 +28,7 @@ router
     errorValidator,
     controllers.updateUserPassword
   );
+
+  router.route("/upcomingEvents").get(isLoggedIn,validators.userByIdQuery,errorValidator,controllers.getUpcomingEvents);
 
 export default router;

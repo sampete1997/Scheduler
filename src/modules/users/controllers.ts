@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import {
   createTokens,
   createUser,
+  findAllUpcomingEvent,
   findAllUsers,
   findUserById,
   updateUserById,
@@ -174,6 +175,26 @@ export const updateUserPassword = async (
       return res.status(200).json({ Message: "Password updated successfully" });
     }
     return res.status(404).json({ message: `User not found with id ${id}` });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong", error: err });
+  }
+};
+
+export const getUpcomingEvents = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const filter: any = {};
+    [];
+    const query: any = req.query;
+    // extra filters
+    if (query?.id) filter.id = query?.id || null;
+    else return res.status(404).json({ message: "user ID is missing" });
+    console.log("filter upcoming", filter);
+    const result = await findAllUpcomingEvent(filter);
+    return res.status(200).json(result);
   } catch (err) {
     res.status(500).json({ message: "Something went wrong", error: err });
   }

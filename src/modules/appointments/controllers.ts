@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { createEvent, findAllEvents, isGuestAvailable } from "./functions";
-import { iMeetingData, iTimeRange } from "../../types/userTypes";
+import {
+  iMeetingData,
+  iSingleUserData,
+  iTimeRange,
+  iUserRegister,
+} from "../../types/userTypes";
 import { findUserById } from "../users/functions";
 import { iEventFilter } from "../../types/appointmentTypes";
 
@@ -28,17 +33,20 @@ export const checkGuestAvailability = async (
   try {
     const body = req.body;
     const id = body.id;
-    const eventDate = body.eventDate;
+    let eventDate = body?.eventDate;
+    eventDate = eventDate.split("T")[0];
     const startTime = body.startTime;
     const endTime = body.endTime;
     if (id && eventDate && startTime && endTime) {
       const guestDetails: any = await findUserById(id);
       let clientSchedule: Array<iTimeRange> = guestDetails?.unavailability;
-      const scheduledEventTimes: Array<iTimeRange> = guestDetails?.meetings[
-        eventDate
-      ]?.map(({ eventTime }: iMeetingData) => eventTime);
-      clientSchedule = [...clientSchedule, ...scheduledEventTimes];
 
+      //Note: guestDetails?.meetings.get(eventDate)  meetings is an Map dataStructure   
+      const scheduledEventTimes: Array<iTimeRange> = guestDetails?.meetings
+        .get(eventDate)
+        .events?.map(({ eventTime }: iMeetingData) => eventTime);
+      clientSchedule = [...clientSchedule, ...scheduledEventTimes];
+      console.log('cl',clientSchedule);
       const result = isGuestAvailable(
         startTime,
         endTime,
@@ -47,7 +55,7 @@ export const checkGuestAvailability = async (
       );
 
       console.log("result client available", result);
-      return res.status(200).json({ availability: result });
+      return res.status(200).json(result);
     }
 
     return res.status(402).json({ message: "Incorrect payload received" });

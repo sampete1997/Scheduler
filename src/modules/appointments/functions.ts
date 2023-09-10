@@ -21,14 +21,13 @@ export const isGuestAvailable = (
   endTime: string,
   eventDate: string,
   clientSchedule: Array<iTimeRange>
-): boolean => {
-  const [day, month, year] = eventDate.split("-");
-  const formatedDate = `${year}-${month}-${day}`;
-  const requestedStart = new Date(`${formatedDate}T${startTime}:00`);
-  const requestedEnd = new Date(`${formatedDate}T${endTime}:00`);
+) => {
+  console.log("dateeeee", eventDate);
+  const requestedStart = new Date(`${eventDate}T${startTime}:00`);
+  const requestedEnd = new Date(`${eventDate}T${endTime}:00`);
   for (const slot of clientSchedule) {
-    const bookedStart = new Date(`${formatedDate}T${slot.start}:00`);
-    const bookedEnd = new Date(`${formatedDate}T${slot.end}:00`);
+    const bookedStart = new Date(`${eventDate}T${slot.start}:00`);
+    const bookedEnd = new Date(`${eventDate}T${slot.end}:00`);
 
     if (
       (requestedStart >= bookedStart && requestedStart < bookedEnd) ||
@@ -36,13 +35,13 @@ export const isGuestAvailable = (
       (requestedStart <= bookedStart && requestedEnd >= bookedEnd)
     ) {
       // There is an overlap, so the client is not available
-      return false;
+      console.log("already booked at slot", slot);
+      return { availability: false, bookedSlot: slot };
     }
   }
   // No overlap found, the client is available
-  return true;
+  return { availability: true };
 };
-
 
 export const findAllEvents = async (filter: any) => {
   try {

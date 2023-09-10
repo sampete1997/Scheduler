@@ -1,5 +1,6 @@
 import {
   iPassword,
+  iSingleUserData,
   iUserFilter,
   iUserRegister,
   iUserUpdate,
@@ -7,7 +8,7 @@ import {
 import { dbCollections } from "../../models";
 import bcrypt from "bcrypt";
 import { encryptString } from "../../utils/encreption";
-import { ObjectId } from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import jwt from "jsonwebtoken";
@@ -69,11 +70,11 @@ export const findAllUsers = async (filter: iUserFilter) => {
   }
 };
 
-export const findUserById = async (id: ObjectId | null | string) => {
+export const findUserById = async (id: ObjectId | null | string): Promise<iSingleUserData | any> => {
   try {
     const result = await dbCollections.User.findOne({ _id: id }, "-password");
     console.log("user by Id", result);
-    return result?.toObject() || null;
+    return result?.toObject();
   } catch (err) {
     console.error("error:", err);
     throw err;
@@ -95,5 +96,50 @@ export const updateUserById = async (
   } catch (err) {
     console.error("error:", err);
     throw err;
+  }
+};
+
+export const findAllUpcomingEvent = async (filter: { id: any }) => {
+  try {
+    const todayDate = new Date().toISOString().split("T")[0];
+    const result = await dbCollections.User.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(filter.id),
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          meetings: {
+            $objectToArray: "$meetings",
+          },
+        },
+      },
+      {
+        $unwind: "$meetings",
+      },
+      {
+        $match: {
+          "meetings.v.eventDate": { $gte: new Date(todayDate) },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          meetings: { $push: "$meetings" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          meetings: 1,
+        },
+      },
+    ]).exec();
+
+    return result;
+  } catch (err) {
+    return err;
   }
 };
