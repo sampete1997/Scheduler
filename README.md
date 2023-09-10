@@ -88,98 +88,157 @@ Note: user who want to add his/her offHours in user schema can use this API as i
     }
 ```
 
+Sample user data,
 
 
 ```
 {
   "_id": {
-    "$oid": "64f96b57e0bc1bef9936e4e6"
+    "$oid": "64fdd18e397f44c1b971b925"
   },
-  "firstName": "sohel",
-  "lastName": "patel",
-  "email": "sohel@gmail.com",
-  "password": "$2b$10$KVwa.4cjwW.mbBqqcPraKelFjuVp0lMTe7hicTCBvTAAD0QKcu9UO",
-  "__v": 0,
+  "firstName": "sam",
+  "lastName": "snow",
+  "email": "sam@gmail.com",
+  "password": "$2b$10$6MWJnWx99Vd4dM/QCme53uLnM4TwkRZznM1D4vEqwvmiEFxvP7q9q",
+  "meetings": {
+    "2023-09-10": {
+      "eventDate": {
+        "$date": "2023-09-10T00:00:00.000Z"
+      },
+      "events": [
+        {
+          "eventTime": {
+            "start": "09:11",
+            "end": "10:20"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        },
+        {
+          "eventTime": {
+            "start": "02:30",
+            "end": "03:00"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        }
+      ]
+    },
+    "2023-09-09": {
+      "eventDate": {
+        "$date": "2023-09-09T00:00:00.000Z"
+      },
+      "events": [
+        {
+          "eventTime": {
+            "start": "09:11",
+            "end": "10:20"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        },
+        {
+          "eventTime": {
+            "start": "02:30",
+            "end": "03:00"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        }
+      ]
+    },
+    "2023-10-11": {
+      "eventDate": {
+        "$date": "2023-10-11T00:00:00.000Z"
+      },
+      "events": [
+        {
+          "eventTime": {
+            "start": "09:11",
+            "end": "10:20"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        },
+        {
+          "eventTime": {
+            "start": "02:30",
+            "end": "03:00"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        }
+      ]
+    },
+    "2023-09-05": {
+      "eventDate": {
+        "$date": "2023-09-05T00:00:00.000Z"
+      },
+      "events": [
+        {
+          "eventTime": {
+            "start": "09:11",
+            "end": "10:20"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        },
+        {
+          "eventTime": {
+            "start": "02:30",
+            "end": "03:00"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        }
+      ]
+    },
+    "2023-09-11": {
+      "eventDate": {
+        "$date": "2023-09-11T00:00:00.000Z"
+      },
+      "events": [
+        {
+          "eventTime": {
+            "start": "09:11",
+            "end": "10:20"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        },
+        {
+          "eventTime": {
+            "start": "02:30",
+            "end": "03:00"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        }
+      ]
+    },
+    "2023-11-18": {
+      "eventDate": {
+        "$date": "2023-11-18T00:00:00.000Z"
+      },
+      "events": [
+        {
+          "eventTime": {
+            "start": "09:11",
+            "end": "10:20"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        },
+        {
+          "eventTime": {
+            "start": "02:30",
+            "end": "03:00"
+          },
+          "eventId": "64f96b57e0bc1bef9936e4e6"
+        }
+      ]
+    }
+  },
   "unavailability": [
     {
-      "start": "01:30",
-      "end": "02:30"
+      "start": "11:30",
+      "end": "12:30"
     },
     {
-      "start": "03:30",
-      "end": "04:30"
-    },
-    {
-      "start": "13:30",
-      "end": "14:30"
+      "start": "15:30",
+      "end": "16:30"
     }
   ],
-  "meetings": {
-    "09-07-2023": [
-      {
-        "eventTime": {
-          "start": "09:11",
-          "end": "10:20"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      },
-      {
-        "eventTime": {
-          "start": "02:30",
-          "end": "03:00"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      }
-    ],
-    "09-11-2023": [
-      {
-        "eventTime": {
-          "start": "09:11",
-          "end": "10:20"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      },
-      {
-        "eventTime": {
-          "start": "02:30",
-          "end": "03:00"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      }
-    ],
-    "09-08-2023": [
-      {
-        "eventTime": {
-          "start": "09:11",
-          "end": "10:20"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      },
-      {
-        "eventTime": {
-          "start": "02:30",
-          "end": "03:00"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      }
-    ],
-    "10-01-2023": [
-      {
-        "eventTime": {
-          "start": "09:11",
-          "end": "10:20"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      },
-      {
-        "eventTime": {
-          "start": "02:30",
-          "end": "03:00"
-        },
-        "eventId": "64f96b57e0bc1bef9936e4e6"
-      }
-    ]
-  }
+  "__v": 0
 }
 ```
 
@@ -194,20 +253,23 @@ http://localhost:3001/prod/api/v1/users/user/updatePassword
 
 # Appointments
 
-**createEvent**
-
 
 before creating any event or hoursOff we have to validate available guest to add in event
 by another API 
 
+
 **checkGuestAvailabilty**
+
 POST request
+
 sample payload body
 ```
-id:64f96b57e0bc1bef9936e4e6
-startTime:12:50
-endTime:16:40
-eventDate:07-09-2023
+{
+id:"64fdd18e397f44c1b971b925"
+startTime:"09:50"
+endTime:"10:40"
+eventDate:"2023-09-10T00:00:00.000Z"
+}
 ```
 
 POST request
@@ -216,6 +278,22 @@ http://localhost:3001/prod/api/v1/appointments/availability
 ```
 once you receive boolean response **true** or **false**
 you can add guest to below api 
+
+Response:
+
+```
+{
+    "availability": false,
+    "bookedSlot": {
+        "start": "09:11",
+        "end": "10:20"
+    }
+}
+```
+Then you can create new event
+
+
+**createEvevet**
 
 ```
 http://localhost:3001/prod/api/v1/appointments/createEvent
@@ -239,7 +317,7 @@ sample payoad to send
     ],
     "hostName": "sohel patel",
     "createdBy": "sohel@gmail.com ",
-    "date": "07-09-2023",
+    "date": "2023-09-08",
     "eventTime": {
         "start": "08:30",
         "end": "09:30"
@@ -248,7 +326,61 @@ sample payoad to send
 }
 ```
 
-Note: date is MM-DD-YYYY format stored by converting ISOString format. time is 24HR format 00:00 To 23:59
+Note: date is YYYY-MM-DD format stored by converting ISOString format. time is 24HR format 00:00 To 23:59
+
+**upComingEvents** OR **upComingAppointments**
+
+GET request
+
+as provide user ID in query in response you will receive meeting List with ID of event, time, date.
+```
+http://localhost:3001/prod/api/v1/users/upcomingEvents?id=64fdd18e397f44c1b971b925
+```
+
+Response
+
+```
+        "meetings": [
+            {
+                "k": "2023-09-10",
+                "v": {
+                    "eventDate": "2023-09-10T00:00:00.000Z",
+                    "events": [
+                        {
+                            "eventTime": {
+                                "start": "11:11",
+                                "end": "12:20"
+                            },
+                            "eventId": "64f96b57e0bc1bef9936e4e6"
+                        },
+                        {
+                            "eventTime": {
+                                "start": "15:30",
+                                "end": "16:00"
+                            },
+                            "eventId": "64f96b57e0bc1bef9936e4e6"
+                        }
+                    ]
+                }
+            },
+            {
+                "k": "2023-09-11",
+                "v": {
+                    "eventDate": "2023-09-11T00:00:00.000Z",
+                    "events": [
+                        {
+                            "eventTime": {
+                                "start": "10:11",
+                                "end": "14:20"
+                            },
+                            "eventId": "64f96b57e0bc1bef9936e4e6"
+                        }
+                    ]
+                }
+            },
+        ]
+    
+```
 
 
 **getAllEvents**
@@ -259,6 +391,7 @@ GET request
 http://localhost:3001/prod/api/v1/appointments/events
 http://localhost:3001/prod/api/v1/appointments/events?start=09:30&end=10:30&createdBy=sohel@mail.com&date=05-24-2023
 ```
+
 
 we can get all events in a database or add filter  to get specific events or events
 by id, createdBy, evenTime as start & end, date.
